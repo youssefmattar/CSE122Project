@@ -462,7 +462,7 @@ public class mainForm extends javax.swing.JFrame {
             txtAttend.setText(Double.toString(s.attendance));
             lstCourses.setModel(listModel);
             listModel.clear();
-            s.parseCourses();//parses courses
+            s.parseCourses();//parses courses and saves data in the object
             for(int i = 0; i< s.getCoursesCount(); i++){
                 listModel.addElement(s.getCourse(i));
                 System.out.println(Integer.toString(i)+ " "+s.getCourse(i));
@@ -472,8 +472,8 @@ public class mainForm extends javax.swing.JFrame {
             dataOnScreen = true;
 
 
-        }else{
-            System.out.println("table is empty");
+        }else{//student not good
+            System.out.println("table is empty or student not there");
             JOptionPane.showMessageDialog(null, "please enter valid student id", "Message Box", JOptionPane.ERROR_MESSAGE);
             currentId = rollBackId;
             txtId.setText(Integer.toString(currentId));
@@ -567,8 +567,8 @@ public class mainForm extends javax.swing.JFrame {
             dataOnScreen = true;
 
 
-        }else{
-            System.out.println("table is empty");
+        }else{//student not good
+            System.out.println("table is empty or student not there");
             JOptionPane.showMessageDialog(null, "there are no more students", "Message Box", JOptionPane.ERROR_MESSAGE);
         }
         btnSubmit.setEnabled(false);
@@ -682,20 +682,21 @@ public class mainForm extends javax.swing.JFrame {
                 courses+= listModel.get(i)+",";
             }
 
-            String coursesFormated = courses.substring(0, courses.length() - 1);
+            String coursesFormated = courses.substring(0, courses.length() - 1);//removes last harmful comma
             s.courses = coursesFormated;
             s.gpa = Double.parseDouble(txtGpa.getText());
             s.attendance = Double.parseDouble(txtAttend.getText());
         }catch(NumberFormatException e){
             System.out.println("error taking input : " + e);
+            JOptionPane.showMessageDialog(null, "please enter valid data", "Message Box", JOptionPane.ERROR_MESSAGE);
         }
         if(s.good4Insert()){
             dataOnScreen = true;
-            if(newTrueUpdatefalse){
+            if(newTrueUpdatefalse){//new
                 sql.insertStudent(s);
                 txtId.setText(Integer.toString(sql.getLastId()));
                 JOptionPane.showMessageDialog(null, "student added successfully", "Message Box", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            }else{//update
                 try {
                     sql.updateStudent(s);
                     JOptionPane.showMessageDialog(null, "student updated successfully", "Message Box", JOptionPane.INFORMATION_MESSAGE);

@@ -81,57 +81,57 @@ public class SQL {
     
     public void insertStudent(Student student){
         
-                if(true){
+        
                     
-                    String sql = "insert into student(name, bday, bmonth, byear, genderMale, nationality, phone, "
-                   + "email, enrYear, major, courses, gpa, attendance)   "
-                   + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into student(name, bday, bmonth, byear, genderMale, nationality, phone, "
+       + "email, enrYear, major, courses, gpa, attendance)   "
+       + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            try{
-                PreparedStatement pstmt = c.prepareStatement(sql);
-                
-                // Set parameters for the prepared statement
-                pstmt.setString(1, student.name);
-                pstmt.setInt(2, student.bday);
-                pstmt.setInt(3, student.bmonth);
-                pstmt.setInt(4, student.byear);
-                pstmt.setInt(5, student.genderMale);
-                pstmt.setString(6, student.nationality);
-                pstmt.setString(7, student.phone);
-                pstmt.setString(8, student.email);
-                pstmt.setInt(9, student.enrYear);
-                pstmt.setString(10, student.major);
-                pstmt.setString(11, student.courses);
-                pstmt.setDouble(12, student.gpa);
-                pstmt.setDouble(13, student.attendance);
-                
-                System.out.println("template student finished");
+        try{
+            PreparedStatement pstmt = c.prepareStatement(sql);
 
-                // Execute the update
-                pstmt.executeUpdate();
-                System.out.println("inserted student");
-                pstmt.close();
-            }catch (Exception e) {
-                System.out.println("Error inserting : " + e);
-            }
-                    
-                    
-                    
-                    /*
-                    stmt.executeUpdate(
-                    "insert into student(name, bday, bmonth, byear, genderMale, nationality, phone,"
-                    +"email, enrYear, major, courses, gpa, attendance)  "
-                    +"values('"+s.name+"', " +s.bday + ", "+s.bmonth+", "+s.byear
-                    +", "+s.genderMale
-                            +", '"+ s.nationality+"', '" + s.phone+"', '"+
-                     s.email+"', "+ s.enrYear+", '" +s.major+"', '" 
-                    + s.courses+"', "+s.gpa +", "+ s.attendance +")"
-                    );
-            
-                }
-                } catch (SQLException ex) {
-                    Logger.getLogger(SQL.class.getName()).log(Level.ALL, null, ex);}*/
+            // Set parameters for the prepared statement
+            pstmt.setString(1, student.name);
+            pstmt.setInt(2, student.bday);
+            pstmt.setInt(3, student.bmonth);
+            pstmt.setInt(4, student.byear);
+            pstmt.setInt(5, student.genderMale);
+            pstmt.setString(6, student.nationality);
+            pstmt.setString(7, student.phone);
+            pstmt.setString(8, student.email);
+            pstmt.setInt(9, student.enrYear);
+            pstmt.setString(10, student.major);
+            pstmt.setString(11, student.courses);
+            pstmt.setDouble(12, student.gpa);
+            pstmt.setDouble(13, student.attendance);
+
+            System.out.println("template student finished");
+
+            // Execute the update
+            pstmt.executeUpdate();
+            System.out.println("inserted student");
+            pstmt.close();
+        }catch (Exception e) {
+            System.out.println("Error inserting : " + e);
         }
+
+
+
+                /*
+                stmt.executeUpdate(
+                "insert into student(name, bday, bmonth, byear, genderMale, nationality, phone,"
+                +"email, enrYear, major, courses, gpa, attendance)  "
+                +"values('"+s.name+"', " +s.bday + ", "+s.bmonth+", "+s.byear
+                +", "+s.genderMale
+                        +", '"+ s.nationality+"', '" + s.phone+"', '"+
+                 s.email+"', "+ s.enrYear+", '" +s.major+"', '" 
+                + s.courses+"', "+s.gpa +", "+ s.attendance +")"
+                );
+
+            }
+            } catch (SQLException ex) {
+                Logger.getLogger(SQL.class.getName()).log(Level.ALL, null, ex);}*/
+        
     }   
     /**
      *
@@ -243,8 +243,8 @@ public class SQL {
         try {
             ResultSet rs = stmt.executeQuery(sql);
             if(rs.next()){
-               int firstId = rs.getInt("id");
-               return firstId;
+               int lastId = rs.getInt("id");
+               return lastId;
             }
             else{
                 return 0;

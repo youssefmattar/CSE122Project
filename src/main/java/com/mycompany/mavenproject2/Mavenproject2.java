@@ -19,7 +19,7 @@ public class Mavenproject2 {
         javax.swing.SwingUtilities.invokeLater(() -> {
             // Create an instance of mainForm
             // Set the form visible
-            myForm.setVisible(true);
+            myForm.setVisible(true);//to render form 
         });
         
         

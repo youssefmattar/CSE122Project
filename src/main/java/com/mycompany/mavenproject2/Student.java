@@ -29,6 +29,7 @@ public class Student {
     private int coursesCount=0;
     
     public void parseCourses(){
+        //separates courses to individual strings in an array
         coursesParsed = courses.split(",");
         coursesCount = coursesParsed.length;
     }
